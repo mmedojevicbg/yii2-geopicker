@@ -72,7 +72,6 @@ EOT;
     }
     protected function renderMap()
     {
-        echo Html::beginForm();
         echo Html::textInput($this->autocompleteId, null, [
             'id' => $this->autocompleteId,
             'placeholder' => 'Type in an address',
@@ -81,7 +80,6 @@ EOT;
         echo Html::button('Find', [
             'id' => $this->findButtonId
         ]);
-        echo Html::endForm();
         echo Html::beginTag('div', ['id' => $this->mapId, 'class' => 'map_canvas']);
         echo Html::endTag('div');
     }

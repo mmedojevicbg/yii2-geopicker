@@ -57,6 +57,10 @@ class GeoPicker extends InputWidget
                 ];
             }
             $("#{$this->autocompleteId}").val(arr[2]);
+        } else {
+            options.mapOptions = {
+                center: new google.maps.LatLng({lat: 44.7866, lng: 20.4489})
+            }
         }
         $("#{$this->autocompleteId}").geocomplete(options)
           .bind("geocode:result", function(event, result){

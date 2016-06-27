@@ -67,6 +67,19 @@ class GeoPicker extends InputWidget
             var lat = result.geometry.location.lat();
             var lng = result.geometry.location.lng();
             $("#{$this->hiddenId}").val(lat + ';' + lng + ';' + $("#{$this->autocompleteId}").val());
+          })
+          .bind("geocode:click", function(event, result){
+            var lat = result.lat();
+            var lng = result.lng();
+            var latLng = new google.maps.LatLng(lat, lng);
+            $("#{$this->autocompleteId}").data('plugin_geocomplete').map.setCenter(latLng);
+            $("#{$this->autocompleteId}").data('plugin_geocomplete').marker.setPosition(latLng);
+            var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lng + "&key={$this->apiKey}";
+            $.getJSON(url, function(json){
+                var loc = json.results[0].formatted_address;
+                $("#{$this->hiddenId}").val(lat + ';' + lng + ';' + loc);
+                $("#{$this->autocompleteId}").val(loc);
+            });
           });
         $("#{$this->findButtonId}").click(function(){
           $("#{$this->autocompleteId}").trigger("geocode");

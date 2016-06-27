@@ -1,7 +1,7 @@
 Geo Picker - Yii2 extension
 =====
 
-This is a form widget which displays Google map and store data as latitude/longitude pair. 
+This is a form widget which displays Google map and stores data as latitude/longitude pair. 
 
 Installation
 ---
